@@ -72,7 +72,7 @@ const Deposit = () => {
           Deposit
         </h2>
         <p className="text-x mb-2">Deposit funds into your account.</p>
-        <p className="text-sm mb-2">Min: Ksh 750 Max: Ksh 100,000</p>
+        <p className="text-sm mb-2">Min: Ksh 375 Max: Ksh 100,000</p>
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/2 pr-4">
             <label

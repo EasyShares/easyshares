@@ -63,7 +63,7 @@ const TermsPage: React.FC = () => {
             and secure.
           </p>
           <p className="mb-6">
-            Minimum Deposit: EasyShares requires a minimum deposit of 750 KES
+            Minimum Deposit: EasyShares requires a minimum deposit of  KES 375
             per transaction. This ensures that users can start investing with a
             reasonable amount and also helps streamline processing for smaller
             transactions.
@@ -99,7 +99,7 @@ const TermsPage: React.FC = () => {
             contributes meaningfully to market liquidity.
           </p>
           <p className="mb-6">
-            Minimum Shares Bought: Users must purchase a minimum of 750 KES
+            Minimum Shares Bought: Users must purchase a minimum of 375 KES
             worth of shares per transaction. This minimum ensures that buying
             activity remains substantial enough to support market dynamics.
           </p>

@@ -46,7 +46,7 @@ const faqdata = [
   {
     question: "What are the transaction limits per user?",
     answer:
-      "The maximum shares that can be bought per transaction are KES 7500, and the maximum shares that can be sold per transaction are KES 5000. Conversely, the minimum shares that can be sold per transaction are KES 500, and the minimum shares that can be bought per transaction are 750. These limits apply per transaction.",
+      "The maximum shares that can be bought per transaction are KES 0, and the maximum shares that can be sold per transaction are KES 5000. Conversely, the minimum shares that can be sold per transaction are KES 500, and the minimum shares that can be bought per transaction are 375. These limits apply per transaction.",
   },
   {
     question: "How does EasyShares generate revenue?",
@@ -57,7 +57,7 @@ const faqdata = [
     question:
       "What are the fixed ROI rates and prices available on EasyShares?",
     answer:
-      "The platform offers fixed ROI rates ranging upto 50%. Additionally, buy prices range from 750 KES to 7500 KES, while sell prices range from 500 KES to 5000 KES.",
+      "The platform offers fixed ROI rates ranging upto 50%. Additionally, buy prices range from 375 KES to 7500 KES, while sell prices range from 500 KES to 5000 KES.",
   },
   {
     question: "Can you provide details about EasyShares' website?",
@@ -72,7 +72,7 @@ const faqdata = [
         <p>Deposit:</p>
         <ul>
           <li>Maximum deposit: 100,000 KES</li>
-          <li>Minimum deposit: 750 KES</li>
+          <li>Minimum deposit: 375 KES</li>
         </ul>
         <p>Withdrawal:</p>
         <ul>

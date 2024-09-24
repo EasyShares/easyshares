@@ -27,14 +27,14 @@ const PayoutSystem = () => {
           </p>
           <ul className="list-disc list-inside text-lg mb-4">
             <li>Maximum deposit: 100,000 KES</li>
-            <li>Minimum deposit: 750 KES</li>
+            <li>Minimum deposit: 375 KES</li>
           </ul>
           <p className="text-lg mb-4">
             <strong>Withdrawal:</strong>
           </p>
           <ul className="list-disc list-inside text-lg mb-4">
             <li>Maximum withdrawal: 100,000 KES</li>
-            <li>Minimum withdrawal: 100 KES</li>
+            <li>Minimum withdrawal: 50 KES</li>
           </ul>
           <p className="text-lg">
             All transaction charges are the ones provided by M-Pesa.
