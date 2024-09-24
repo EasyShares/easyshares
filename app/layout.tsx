@@ -6,11 +6,10 @@ import { getAllSettings } from "@/data/content-manager";
 import { currentUser } from "@/lib/auth";
 
 const nunito = Nunito_Sans({
-    subsets: ["latin"],
-    display: "swap",
-    weight: ["400", "700"], // If you need both regular and bold
-  });
-  
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -34,16 +33,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let user:any = null;
-  let settings:any = [];
-
-  try {
-    user = await currentUser();
-    settings = await getAllSettings();
-  } catch (error) {
-    console.error("Error fetching user or settings:", error);
-  }
-
+  const user = await currentUser();
+  const settings: any = await getAllSettings();
   return (
     <html lang="en" className={`${nunito.className}`}>
       <body>
@@ -54,4 +45,3 @@ export default async function RootLayout({
     </html>
   );
 }
-
