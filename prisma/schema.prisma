@@ -1,0 +1,215 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+
+model Setting {
+  id                   String      @id @default(cuid())
+  websitename          String      @default("EasyShares")
+  twitter              String      @default("https://twitter.com/@Easy_Shares")
+  youtube              String      @default("https://youtube.com/@Easy_Shares")
+  tiktok               String      @default("https://tiktok.com/@easy_shares")
+  facebook             String      
+  status               String      @default("live")
+  commingSoonAt        String      
+  disclaimer           String      
+  secret               String      @default("EasySharesSss333123") 
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+model User {
+  id                   String      @id @default(cuid())
+  password             String
+  cash_balance         Int       @default(0)
+  shares_balance       Int       @default(0)
+  email                String    @unique
+  emailVerified        DateTime?
+  fullname             String
+  phone                String   
+  emailNotifications   String    @default("on")
+  smsNotifications     String    @default("on")
+  two_fa               String    @default("off")
+  accepted_terms       String    @default("yes")
+  referralCode         String    @unique
+  uplineCode           String
+  istwo_fa_verified    Boolean   @default(false)
+  two_fa_Code          String    @unique
+  two_fa_QRCode        String    @unique
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  role                 UserRole  @default(USER)
+  accounts             Account[]
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model VerificationToken {
+  id               String @id @default(cuid())
+  email            String
+  token            String @unique
+  expires          DateTime
+
+  @@unique([email, token])
+}
+
+model PasswordResetToken {
+  id               String @id @default(cuid())
+  email            String
+  token            String @unique
+  expires          DateTime
+
+  @@unique([email, token])
+}
+
+model CashTransaction {
+  id                   String      @id @default(cuid())
+  mpesa_code           String      @unique
+  amount               String
+  phone                String   
+  email                String    
+  type                 String
+  status               String   
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+model Portfolio {
+  id                              String      @id @default(cuid())
+  email                           String      @unique
+  phone                           String 
+  total_shares_bought             Int         @default(0)
+  total_shares_sold               Int         @default(0)
+  total_deposits                  Int         @default(0)
+  total_withdrawals               Int         @default(0)
+  total_profit                    Int         @default(0)
+  total_affiliates_profit         Int         @default(0)
+}
+
+model Affiliate {
+  id                   String      @id @default(cuid())
+  email                String      @unique
+  uplineCode           String      
+  status               String      @default("Unverified")
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+model Exchange{
+  id                   String      @id @default(cuid())
+  name                 String      
+  email                String      
+  type                 String
+  matchID              Int         
+  amount               Int
+  status               String      
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+model Competition{
+  id                   String      @id @default(cuid())
+  name                 String      
+  month                String      
+  status               String    
+  isUpdated            Boolean
+  participants         Int 
+  url                  String      @unique
+  winner               String      @default("_")
+  startAt              String   
+  endAt                String   
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+model Participant{
+  id                   String      @id @default(cuid())
+  name                 String      
+  email                String      
+  referrals            Int         
+  competitionID        String
+  prize                Int
+  position             Int      
+  referralCode         String
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+model PopularSharesBought{
+  id                   String      @id @default(cuid())
+  name                 String      @unique 
+  price                Int         @unique 
+  buyers               Int         @default(0)
+  type                 String      @default("buy")
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+model PopularSharesSold{
+  id                   String      @id @default(cuid())
+  name                 String      @unique 
+  price                Int         @unique 
+  sellers              Int         @default(0)
+  type                 String      @default("sell")
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+model Contact {
+  id                   String      @id @default(cuid())
+  name                 String
+  email                String   
+  subject              String   
+  message              String      
+  status               String      
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+model Ad {
+  id                   String      @id @default(cuid())
+  name                 String   
+  description          String      @default("")
+  url                  String      @unique
+  code                 String      
+  cname                String   
+  type                 String      
+  cemail               String      
+  status               String  
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+model OnlineUsers {
+  id                   String      @id @default(cuid())
+  users                Int         @default(0)
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
