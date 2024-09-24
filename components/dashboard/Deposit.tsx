@@ -32,8 +32,8 @@ const Deposit = () => {
       return;
     }
 
-    if (amount < 1) {
-      toast.error("Minimum deposit is 750 KES.");
+    if (amount < 375) {
+      toast.error("Minimum deposit is 375 KES.");
       return;
     }
 

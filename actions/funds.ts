@@ -16,7 +16,7 @@ export const DepositFunds = async (values: any) => {
     return { success: false, message: "User does not exist!" };
   }
   const amount = parseFloat(values.amount);
-  if (isNaN(amount) || amount < 750 || amount > 100000) {
+  if (isNaN(amount) || amount < 375 || amount > 100000) {
     return { success: false, message: "Invalid amount!" };
   }
 
